@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Stock ZER0</title>
+</head>
+<body>
+    <header>
+        <h1>Stock ZER0</h1>
+    </header>
+
+    <main>
+        <div id="date-time">
+            <p id="current-date"></p>
+            <p id="current-time"></p>
+        </div>
+
+        <div id="search-box">
+            <label for="ticker-input">Enter Ticker Symbol:</label>
+            <input type="text" id="ticker-input" placeholder="AAPL">
+            <button onclick="getStockPrice()">Get Price</button>
+        </div>
+
+        <div id="stock-info">
+            <h2 id="price-heading">Stock Price:</h2>
+            <p id="stock-price">-</p>
+        </div>
+
+        <div id="subpage-links">
+            <a href="comparison.html" class="subpage-link">Stock Comparison</a>
+            <a href="detail.html" class="subpage-link">Stock Detail</a>
+            <a href="watchlist.html" class="subpage-link">Watchlist</a>
+        </div>
+        <div id="personal-details">
+            <p>Made by Shourab Chowdhury</p>
+            <a href="https://www.linkedin.com/in/shourabchowdhury" target="_blank" id="linkedin-link">LinkedIn</a>
+        </div>
+        
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
