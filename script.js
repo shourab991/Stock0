@@ -1,176 +1,44 @@
-// script.js
-const apiKey = '8TWCW2F1S63KICNE';
-
-async function getStockPrice() {
-    const ticker = document.getElementById('ticker-input').value;
-    const apiUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${apiKey}`;
-
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data['Global Quote']) {
-            const price = data['Global Quote']['05. price'];
-            displayStockPrice(price);
-        } else {
-            displayErrorMessage('Invalid Ticker Symbol');
-        }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        displayErrorMessage('Error fetching data');
-    }
-}
-
-async function compareStocks() {
-    const ticker1 = document.getElementById('ticker1-input').value;
-    const ticker2 = document.getElementById('ticker2-input').value;
-
-    const data1 = await fetchStockData(ticker1);
-    const data2 = await fetchStockData(ticker2);
-
-    if (data1 && data2) {
-        displayComparisonResults(data1, data2);
-    } else {
-        displayComparisonError();
-    }
-}
-
-async function getStockDetails() {
-    const detailTicker = document.getElementById('detail-ticker-input').value;
-
-    const stockData = await fetchStockData(detailTicker);
-
-    if (stockData) {
-        displayStockDetails(stockData);
-    } else {
-        displayDetailError();
-    }
-}
-function updateDateTime() {
-    const currentDateElement = document.getElementById('current-date');
-    const currentTimeElement = document.getElementById('current-time');
-
-    const currentDate = new Date().toLocaleDateString();
-    const currentTime = new Date().toLocaleTimeString();
-
-    currentDateElement.textContent = `Date: ${currentDate}`;
-    currentTimeElement.textContent = `Time: ${currentTime}`;
-}
-
-// Call the updateDateTime function when the page loads
-window.onload = function () {
-    updateDateTime();
+const staticStockData = {
+  AAPL: {
+      price: 200,
+      name: 'Apple',
+  },
+  AMZN: {
+      price: 300,
+      name: 'Amazon'
+  },
+  GOOGL: {
+      price: 500,
+      name: 'Google'
+  },
+  MSFT: {
+      price: 800,
+      name: 'Microsoft'
+  },
 };
 
-function addToWatchlist() {
-    const watchlistTicker = document.getElementById('watchlist-ticker-input').value;
-
-    if (watchlistTicker) {
-        const stockData = fetchStockData(watchlistTicker);
-        if (stockData) {
-            const watchlistContent = document.getElementById('watchlist-content');
-            const newWatchlistItem = document.createElement('div');
-            newWatchlistItem.classList.add('watchlist-item');
-
-            const deleteButton = document.createElement('button');
-            deleteButton.innerText = 'Remove';
-            deleteButton.onclick = function () {
-                removeFromWatchlist(newWatchlistItem);
-            };
-
-            newWatchlistItem.innerHTML = `
-                <p>${stockData.ticker}: $${stockData.price}</p>
-                <p>Last Updated: ${stockData.lastUpdated}</p>
-            `;
-            newWatchlistItem.appendChild(deleteButton);
-
-            watchlistContent.appendChild(newWatchlistItem);
-        } else {
-            alert('Invalid Ticker Symbol or Error fetching data');
-        }
+function getStockPrice() {
+    let stockInput = document.getElementById("searchBox").value.toUpperCase();
+    const selectedStock = staticStockData[stockInput];
+    
+    let stockInfo = "";
+    
+    if (selectedStock) {
+        stockInfo = `${selectedStock.name}: $${selectedStock.price}`;
+    } else {
+        stockInfo = "Stock not found";
     }
+    
+    document.getElementById("stockDataReceived").innerHTML = stockInfo;
 }
 
-async function fetchStockData(ticker) {
-    const apiUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${apiKey}`;
+/*function getStockPrice() {
+let stockInput = document.getElementById("searchBox").value.toUpperCase();
 
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+const selectedStock = staticStockData[stockInput];
 
-        if (data['Global Quote']) {
-            const price = data['Global Quote']['05. price'];
-            const lastUpdated = data['Global Quote']['07. latest trading day'];
+let stockInfo = `${selectedStock.price}`;
 
-            return {
-                ticker: ticker,
-                price: price,
-                lastUpdated: lastUpdated
-            };
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.error(`Error fetching data for ${ticker}:`, error);
-        return null;
-    }
+stockInfo = document.getElementById("stockDataRecieved");
 }
-
-function removeFromWatchlist(watchlistItem) {
-    const watchlistContent = document.getElementById('watchlist-content');
-    watchlistContent.removeChild(watchlistItem);
-}
-
-function displayStockPrice(price) {
-    const priceDisplay = document.getElementById('stock-price');
-    const priceHeading = document.getElementById('price-heading');
-
-    priceHeading.textContent = 'Stock Price:';
-    priceDisplay.textContent = `$${price}`;
-}
-
-function displayComparisonResults(data1, data2) {
-    const resultsContainer = document.getElementById('comparison-results');
-
-    resultsContainer.innerHTML = `
-        <h2>Comparison Results</h2>
-        <p>${data1.ticker}: $${data1.price}</p>
-        <p>${data2.ticker}: $${data2.price}</p>
-    `;
-}
-
-function displayComparisonError() {
-    const resultsContainer = document.getElementById('comparison-results');
-
-    resultsContainer.innerHTML = `
-        <h2>Error</h2>
-        <p>Invalid Ticker Symbols or Error fetching data</p>
-    `;
-}
-
-function displayStockDetails(stockData) {
-    const detailContainer = document.getElementById('detail-results');
-
-    detailContainer.innerHTML = `
-        <h2>${stockData.ticker} Details</h2>
-        <p>Price: $${stockData.price}</p>
-        <p>Last Updated: ${stockData.lastUpdated}</p>
-    `;
-}
-
-function displayDetailError() {
-    const detailContainer = document.getElementById('detail-results');
-
-    detailContainer.innerHTML = `
-        <h2>Error</h2>
-        <p>Invalid Ticker Symbol or Error fetching data</p>
-    `;
-}
-
-function displayErrorMessage(message) {
-    const priceDisplay = document.getElementById('stock-price');
-    const priceHeading = document.getElementById('price-heading');
-
-    priceHeading.textContent = 'Error:';
-    priceDisplay.textContent = message;
-}
+//document.getElementById("stockDataRecieved").innerHTML = stockInfo; */

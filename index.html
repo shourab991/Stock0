@@ -1,46 +1,44 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css">
-    <title>Stock ZER0</title>
-</head>
-<body>
-    <header>
-        <h1>Stock ZER0</h1>
-    </header>
-
+    <title>Stock Zero</title>
+  </head>
+  <body>
+    <header>Stock Zero</header>
     <main>
-        <div id="date-time">
-            <p id="current-date"></p>
-            <p id="current-time"></p>
-        </div>
-
-        <div id="search-box">
-            <label for="ticker-input">Enter Ticker Symbol:</label>
-            <input type="text" id="ticker-input" placeholder="AAPL">
-            <button onclick="getStockPrice()">Get Price</button>
-        </div>
-
-        <div id="stock-info">
-            <h2 id="price-heading">Stock Price:</h2>
-            <p id="stock-price">-</p>
-        </div>
-
+      <div id="searchArea">
+        <label for="searchBox">Enter Ticker Symbol</label>
+        <input type="text" placeholder="AAPL" id="searchBox" />
+        <button class="searchButton" onclick="
+        getStockPrice();
+        ">Get Price</button>
+      </div>
+      <div id="displayedStockResults">
+        <h2 id="stockPriceInfo">Stock Name</h2>
+        <p id="stockDataRecieved">AAPL: 200</p>
+        <p id="openStockPrice">Open 174.34</p>
+        <p id="high">High 176.60</p>
+        <p id="low">Low 173.03</p>
+        <p id="marketCap">Mkt cap 2.72T</p>
+        <p id="weekHigh52">52-wk high 199.62</p>
+        <p id="weekLow52">52-wk low 154.15</p>
+      </div>
+      <div>
         <div id="subpage-links">
-            <a href="comparison.html" class="subpage-link">Stock Comparison</a>
-            <a href="detail.html" class="subpage-link">Stock Detail</a>
-            <a href="watchlist.html" class="subpage-link">Watchlist</a>
+          <a href="comparison.html" class="subpage-link">Stock Comparison</a>
+          <a href="detail.html" class="subpage-link">Stock Detail</a>
+          <a href="watchlist.html" class="subpage-link">Watchlist</a>
         </div>
-        <div id="personal-details">
-            <p>Made by Shourab Chowdhury</p>
-            <a href="https://www.linkedin.com/in/shourabchowdhury" target="_blank" id="linkedin-link">LinkedIn</a>
+        <div id="personalInformation">
+          <p>Made By Shourab Chowdhury</p>
+          <a href="https://www.linkedin.com/in/shourabchowdhury" id="linkedInLink" target="_blank">LinkedIn</a>
         </div>
-        
-    </main>
 
-    <script src="script.js"></script>
-</body>
+    </main>
+    <script src="script.js">
+    </script>
+  </body>
 </html>
