@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Comparison</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="comparison.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="headerCompare">Stock Zero - Compare</h1>
+    <div id="searchArea">
+        <label for="searchBox1">Enter Ticker Symbol 1:</label>
+        <input onkeypress="handleKeyPress(event)" type="text" placeholder="AAPL" id="searchBox1">
+        <label for="searchBox2">Enter Ticker Symbol 2:</label>
+        <input onkeypress="handleKeyPress(event)" type="text" placeholder="GOOG" id="searchBox2">
+        <button class="compareButton" onclick="compareStocks('searchBox1','searchBox2')">Compare</button>
+    </div>
+    <div class="stock-container" id="comparisonResults1"></div>
+    <div class="stock-container" id="comparisonResults2"></div>
+  </div>
+
+    <script src="comparison.js"></script>
+</body>
+</html>
