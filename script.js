@@ -528,11 +528,11 @@ function getTickerInfo(ticker) {
         document.getElementById('sectorStock').textContent = `Sector: ${stockDetails.sector}`;
         document.getElementById('exchangeStock').textContent = `Exchange: ${stockDetails.exchange}`;
        
-        // Update other elements with relevant information as needed
+       
     } else {
         document.getElementById('stockPriceInfo').textContent = 'Ticker not found';
         alert("SORRY WE DO NOT HAVE THAT YET");
-        // Clear other elements or show appropriate messages if needed
+        
     }
 }
 function handleKeyPress(event) {

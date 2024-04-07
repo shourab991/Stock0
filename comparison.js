@@ -1,9 +1,3 @@
-function handleKeyPress(event) {
-  if (event.key === 'Enter') {
-      
-      document.querySelector('.searchButton').click();
-  }
-}
 const tickerInfo = {
   AAPL: {
       companyName: "Apple Inc.",
@@ -519,16 +513,16 @@ function compareStocks() {
   const stockSymbol1 = document.getElementById('searchBox1').value.toUpperCase();
   const stockSymbol2 = document.getElementById('searchBox2').value.toUpperCase();
 
-  // Retrieve stock information from the tickerInfo object
+  
   const stock1Info = tickerInfo[stockSymbol1];
   const stock2Info = tickerInfo[stockSymbol2];
 
   // Check if both stock symbols are valid
   if (stock1Info && stock2Info) {
-      // Display comparison results
+      
       displayComparison(stock1Info, stock2Info);
   } else {
-      // Display error message if one or both symbols are invalid
+      
       alert('Please enter valid stock symbols');
   }
   function displayComparison(stock1Info, stock2Info) {
@@ -556,7 +550,7 @@ function compareStocks() {
             <p>52 Week Low: ${stock1Info.weekLow}</p>
         </div>
     `;
-    // Create HTML content for stock 2
+
     const stock2HTML = `
         <div class="stock-info2">
         <img src="${stock2Info.imageUrl}" alt="${stock1Info.companyName} Image">
@@ -573,7 +567,7 @@ function compareStocks() {
         </div>
     `;
 
-    // Append stock HTML to the comparison results element
+
     comparisonResultsElement1.innerHTML = stock1HTML;
     comparisonResultsElement2.innerHTML = stock2HTML;
 }
@@ -584,3 +578,18 @@ function handleKeyPress(event) {
       document.querySelector('.compareButton').click();
   }
 }
+function updateDateTime() {
+    var now = new Date();
+    var datetimeElement = document.getElementById('datetime');
+    var date = now.toDateString(); // Get date in "Day Month Date Year" format
+    var time = now.toLocaleTimeString(); // Get time in local time format
+  
+    // Update the content of the datetime element
+    datetimeElement.textContent = 'Date: ' + date + ' | Time: ' + time;
+  }
+  
+  // Call the updateDateTime function initially to set the initial date and time
+  updateDateTime();
+  
+  // Update date and time every second (1000 milliseconds)
+  setInterval(updateDateTime, 1000);
