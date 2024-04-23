@@ -146,3 +146,39 @@ main {
     width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
 }
+
+#searchBox {
+  padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
+    margin: 0 auto; /* Center the search bar horizontally */
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Style for autocomplete suggestions */
+#autocompleteSuggestions {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+  width: 300px; /* Match the width of the search bar */
+  margin: 0 auto; /* Center the autocomplete suggestions horizontally */
+  left: 0; /* Reset left positioning */
+  right: 0; /* Reset right positioning */
+}
+
+#autocompleteSuggestions div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#autocompleteSuggestions div:hover {
+  background-color: #f2f2f2;
+}

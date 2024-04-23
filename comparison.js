@@ -508,8 +508,54 @@ const tickerInfo = {
       }
 // Add more stocks here
 };
+function addStockInput() {
+    const additionalStockSymbol = document.getElementById('additionalStockSymbol').value.toUpperCase();
+    
+
+    if (tickerInfo[additionalStockSymbol]) {
+        const additionalStockInfo = tickerInfo[additionalStockSymbol];
+        const comparisonResultsElement = document.createElement('div');
+        const containerId = `comparisonResults${additionalStockSymbol}`; 
+        comparisonResultsElement.id = containerId; 
+        comparisonResultsElement.classList.add('stock-container');
+
+        const stockHTML = `
+            <div class="stock-info">
+                <button class="remove-button" onclick="removeStock('${additionalStockSymbol}')">❌</button>
+                <img src="${additionalStockInfo.imageUrl}" alt="${additionalStockInfo.companyName} Image">
+                <h2>${additionalStockInfo.companyName}</h2>
+                <p>Price: ${additionalStockInfo.price}</p>
+                <p>Sector: ${additionalStockInfo.sector}</p>
+                <p>Exchange: ${additionalStockInfo.exchange}</p>
+                <p>Open: ${additionalStockInfo.open}</p>
+                <p>High: ${additionalStockInfo.high}</p>
+                <p>Low: ${additionalStockInfo.low}</p>
+                <p>Market Cap: ${additionalStockInfo.MarketCap}</p>
+                <p>52 Week High: ${additionalStockInfo.weekHigh}</p>
+                <p>52 Week Low: ${additionalStockInfo.weekLow}</p>
+            </div>
+        `;
+        
+        comparisonResultsElement.innerHTML = stockHTML;
+        document.body.appendChild(comparisonResultsElement);
+    } else {
+        alert('Please enter a valid stock symbol.');
+    }
+}
+
+
+function removeStock(symbol) {
+    const stockElement = document.getElementById(`comparisonResults${symbol}`);
+    if (stockElement) {
+        stockElement.parentNode.removeChild(stockElement);
+    }
+}
+
+
 
 function compareStocks() {
+    const container = document.getElementById('additionalStockInput');
+    container.style.display = 'block';
   const stockSymbol1 = document.getElementById('searchBox1').value.toUpperCase();
   const stockSymbol2 = document.getElementById('searchBox2').value.toUpperCase();
 
@@ -530,13 +576,13 @@ function compareStocks() {
     const comparisonResultsElement1 = document.getElementById('comparisonResults1');
     const comparisonResultsElement2 = document.getElementById('comparisonResults2');
     
-    // Clear any previous comparison results
     comparisonResultsElement1.innerHTML = '';
     comparisonResultsElement2.innerHTML = '';
 
     // Create HTML content for stock 1
     const stock1HTML = `
         <div class="stock-info1">
+        <button class="remove-button" onclick="removeStock(1)">❌</button>
           <img src="${stock1Info.imageUrl}" alt="${stock1Info.companyName} Image">
             <h2>${stock1Info.companyName}</h2>
             <p>Price: ${stock1Info.price}</p>
@@ -548,11 +594,13 @@ function compareStocks() {
             <p>Market Cap: ${stock1Info.MarketCap}</p>
             <p>52 Week High: ${stock1Info.weekHigh}</p>
             <p>52 Week Low: ${stock1Info.weekLow}</p>
+            
         </div>
     `;
 
     const stock2HTML = `
         <div class="stock-info2">
+        <button class="remove-button" onclick="removeStock(2)">❌</button>
         <img src="${stock2Info.imageUrl}" alt="${stock1Info.companyName} Image">
         <h2>${stock2Info.companyName}</h2>
         <p>Price: ${stock2Info.price}</p>
@@ -564,6 +612,7 @@ function compareStocks() {
         <p>Market Cap: ${stock2Info.MarketCap}</p>
         <p>52 Week High: ${stock2Info.weekHigh}</p>
         <p>52 Week Low: ${stock2Info.weekLow}</p>
+        
         </div>
     `;
 
@@ -572,24 +621,11 @@ function compareStocks() {
     comparisonResultsElement2.innerHTML = stock2HTML;
 }
 }
+
+
+
 function handleKeyPress(event) {
   if (event.key === 'Enter') {
       
-      document.querySelector('.compareButton').click();
-  }
+      document.querySelector('.compareButton').click();}
 }
-function updateDateTime() {
-    var now = new Date();
-    var datetimeElement = document.getElementById('datetime');
-    var date = now.toDateString(); // Get date in "Day Month Date Year" format
-    var time = now.toLocaleTimeString(); // Get time in local time format
-  
-    // Update the content of the datetime element
-    datetimeElement.textContent = 'Date: ' + date + ' | Time: ' + time;
-  }
-  
-  // Call the updateDateTime function initially to set the initial date and time
-  updateDateTime();
-  
-  // Update date and time every second (1000 milliseconds)
-  setInterval(updateDateTime, 1000);

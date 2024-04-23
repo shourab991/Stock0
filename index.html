@@ -10,9 +10,13 @@
     <header>Stock Zero</header>
     <main>
       <div id="searchArea">
-        <label for="searchBox">Enter Ticker Symbol</label>
+        <label for="searchBox1">Enter Ticker Symbol</label>
         <input onkeypress="handleKeyPress(event)" type="text" placeholder="AAPL" id="searchBox" />
+        <div id="autocompleteSuggestions"></div>
         <button class="searchButton" onclick="getTickerInfo(document.getElementById('searchBox').value)" >Get Price</button>
+        
+        
+        
     </div>
       </div>
       <div id="displayedStockResults">

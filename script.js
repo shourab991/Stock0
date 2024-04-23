@@ -535,6 +535,91 @@ function getTickerInfo(ticker) {
         
     }
 }
+// Add autocomplete functionality
+const searchBar = document.getElementById('searchBox');
+const autocompleteSuggestions = document.getElementById('autocompleteSuggestions');
+
+// Define your data for autocomplete suggestions
+const tickerSymbols = Object.keys(tickerInfo);
+
+// Add event listener for input event on the search bar
+searchBox.addEventListener('input', function() {
+    // Clear previous suggestions
+    autocompleteSuggestions.innerHTML = '';
+
+    // Get user input
+    const userInput = searchBox.value.toLowerCase();
+
+    // Filter data to find matches
+    const matches = tickerSymbols.filter(symbol => symbol.toLowerCase().includes(userInput));
+
+    // Generate HTML for suggestions and update the autocomplete suggestions container
+    matches.forEach(match => {
+        const suggestion = document.createElement('div');
+        suggestion.textContent = match;
+        autocompleteSuggestions.appendChild(suggestion);
+    });
+});
+
+// Add event listener to handle selection from autocomplete suggestions
+autocompleteSuggestions.addEventListener('click', function(event) {
+    const selectedSymbol = event.target.textContent;
+    searchBox.value = selectedSymbol;
+    // Call your function to fetch and display ticker info
+    getTickerInfo(selectedSymbol);
+});
+
+// Additional function to handle enter key press
+searchBar.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        const selectedSymbol = searchBox.value.toUpperCase();
+        // Call your function to fetch and display ticker info
+        getTickerInfo(selectedSymbol);
+    }
+});
+function handleKeyUp(event) {
+    const input = document.getElementById('searchBox');
+    const inputValue = input.value.trim(); // Trim whitespace from input value
+
+    // If input value is empty, hide autocomplete suggestions
+    if (!inputValue) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+
+    // Show autocomplete suggestions if input value is not empty
+    showAutocompleteSuggestions(inputValue);
+}
+
+function hideAutocompleteSuggestions() {
+    const autocompleteSuggestions = document.getElementById('autocompleteSuggestions');
+    autocompleteSuggestions.innerHTML = ''; // Clear autocomplete suggestions
+}
+
+function showAutocompleteSuggestions(inputValue) {
+    const autocompleteSuggestions = document.getElementById('autocompleteSuggestions');
+
+    // Your autocomplete logic here to populate suggestions based on inputValue
+    // For demonstration purposes, I'll just use a sample array of suggestions
+    const suggestions = tickerInfo.property; // Replace this with your actual autocomplete suggestions
+
+    // Check if there are any suggestions
+    if (suggestions.length > 0) {
+        // Construct HTML for displaying suggestions
+        const suggestionHTML = suggestions.map(suggestion => `<div>${suggestion}</div>`).join('');
+        autocompleteSuggestions.innerHTML = suggestionHTML;
+    } else {
+        // If no suggestions, hide autocomplete suggestions
+        hideAutocompleteSuggestions();
+    }
+}
+
+// Attach the handleKeyUp function to the keyup event of the search bar
+document.getElementById('searchBox').addEventListener('keyup', handleKeyUp);
+
+
+
+
 function handleKeyPress(event) {
     if (event.key === 'Enter') {
         
