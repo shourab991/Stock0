@@ -600,8 +600,7 @@ function showAutocompleteSuggestions(inputValue) {
     const autocompleteSuggestions = document.getElementById('autocompleteSuggestions');
 
     // Your autocomplete logic here to populate suggestions based on inputValue
-    // For demonstration purposes, I'll just use a sample array of suggestions
-    const suggestions = tickerInfo.property; // Replace this with your actual autocomplete suggestions
+    const suggestions = tickerInfo.keys; // Replace this with your actual autocomplete suggestions
 
     // Check if there are any suggestions
     if (suggestions.length > 0) {

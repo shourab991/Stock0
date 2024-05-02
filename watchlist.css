@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  background-color: #640606;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#watchlistContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.watchlistItem {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.watchlistItem h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.watchlistItem p {
+  margin: 5px 0;
+}
+
+footer {
+  background-color: #5a0505;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+.stock-container img {
+  width: 100px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Adjust margin as needed */
+}
+/* Style for the add stock button */
+#addStockForm button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Add padding */
+  cursor: pointer; /* Add cursor pointer */
+  border-radius: 5px; /* Add rounded corners */
+  transition: background-color 0.3s; /* Add smooth transition */
+}
+
+/* Hover effect for the add stock button */
+#addStockForm button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Style for the input area */
+#addStockForm input[type="text"] {
+  padding: 10px; /* Add padding */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add rounded corners */
+  transition: border-color 0.3s; /* Add smooth transition */
+}
+
+/* Hover effect for the input area */
+#addStockForm input[type="text"]:focus {
+  border-color: #4CAF50; /* Change border color on focus */
+}
