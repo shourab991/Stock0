@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input[type="text"] {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-bar button:hover {
+  background-color: #45a049;
+}
+
+#stock-details {
+  margin-top: 20px;
+}
+
+.stock-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.stock-card img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.back-to-homepage {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-to-homepage a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-to-homepage a:hover {
+  text-decoration: underline;
+}
+
+.loading {
+  text-align: center;
+  color: #999;
+}
+
+#toast {
+  visibility: hidden;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+#toast.show {
+  visibility: visible;
+}
