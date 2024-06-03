@@ -1,0 +1,83 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], button {
+  margin-bottom: 10px;
+}
+
+.comparison {
+  display: flex;
+}
+
+.stock {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.stock:last-child {
+  margin-right: 0;
+}
+
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  display: block;
+}
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #4CAF50; /* Green background color */
+  color: white; /* White text color */
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  opacity: 0; /* Set initial opacity to 0 */
+  transition: opacity 0.5s ease; /* Add transition effect for opacity */
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1; /* Set opacity to 1 when showing */
+  transition: opacity 0.5s ease; /* Add transition effect for opacity */
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
