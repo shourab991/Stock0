@@ -1,3 +1,15 @@
+const today = new Date();
+    
+    // Format the date as YYYY-MM-DD
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    
+    // Set the value of the input fields to today's date
+    document.getElementById("fromDate").value = formattedDate;
+    document.getElementById("toDate").value = formattedDate;
+    
 const tickerImage = [
   {
       "stockName": "AAPL",
