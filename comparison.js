@@ -1,149 +1,4 @@
-const tickerInfo = [
-  {
-      "stockName": "AAPL",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "MSFT",
-      "imageUrl": "https://g.foolcdn.com/art/companylogos/square/msft.png"
-  },
-  {
-      "stockName": "GOOGL",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/alphabet--600.png"
-  },
-  {
-      "stockName": "AMZN",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/amazon--600.png"
-  },
-  {
-      "stockName": "FB",
-      "imageUrl": "https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/02/02/meta-facebook_feature.jpg"
-  },
-  {
-      "stockName": "TSLA",
-      "imageUrl": "https://g.foolcdn.com/art/companylogos/square/tsla.png"
-  },
-  {
-      "stockName": "JPM",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "BABA",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "NVDA",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "V",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "MA",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "PG",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "HD",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "DIS",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "KO",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "INTC",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "CRM",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "NFLX",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/netflix--600.png"
-  },
-  {
-      "stockName": "VZ",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "PFE",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "MRK",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "BA",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "NKE",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "MCD",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "CSCO",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "WMT",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "XOM",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "CVX",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "JNJ",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "ORCL",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "PEP",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "CMCSA",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "T",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "TSM",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "UNH",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  },
-  {
-      "stockName": "BAC",
-      "imageUrl": "https://s3-symbol-logo.tradingview.com/apple--big.svg"
-  }
-];
+
 async function fetchStockData(symbol, date) {
   const apiKey = 'py0oHgf3bcN3Q1OMgpUaqORS7SD3koDs';
   const url = `https://api.polygon.io/v2/aggs/ticker/${symbol}/range/1/day/${date}/${date}?adjusted=true&sort=asc&apiKey=${apiKey}`;
@@ -158,7 +13,6 @@ async function fetchStockData(symbol, date) {
       }
   } catch (error) {
       console.error('Error fetching stock data:', error);
-      showToast("Error message goes here");
       return null;
   }
 }
@@ -176,13 +30,11 @@ async function addStockInput() {
 
   if (!additionalStockSymbol) {
       displayError('Please enter a valid stock symbol.', 'errorAdditionalStockSymbol');
-      showToast("Error message goes here");
       return;
   }
 
   if (!additionalDateElement.value) {
       displayError('Please enter a valid date.', 'errorAdditionalDate');
-      showToast("Error message goes here");
       return;
   }
 
@@ -211,10 +63,8 @@ async function addStockInput() {
 
       comparisonResultsElement.innerHTML = stockHTML;
       document.body.appendChild(comparisonResultsElement);
-      showToast("Stock added successfully!");
   } else {
       displayError('Failed to fetch stock data. Please try again later.', 'errorAdditionalStockSymbol');
-      showToast("Error message goes here");
   }
 }
 
@@ -229,19 +79,16 @@ function compareStocks() {
 
   if (!stockSymbol1) {
       displayError('Please enter a valid stock symbol.', 'errorSearchBox1');
-      showToast("Error message goes here");
       return;
   }
 
   if (!stockSymbol2) {
       displayError('Please enter a valid stock symbol.', 'errorSearchBox2');
-      showToast("Error message goes here");
       return;
   }
 
   if (!date) {
       displayError('Please enter a valid date.', 'errorDatePicker');
-      showToast("Error message goes here");
       return;
   }
 
@@ -251,10 +98,8 @@ function compareStocks() {
               const stockImageUrl1 = getStockImageUrl(stockSymbol1);
               const stockImageUrl2 = getStockImageUrl(stockSymbol2);
               displayComparison(stockSymbol1, stockData1, stockImageUrl1, stockSymbol2, stockData2, stockImageUrl2);
-              showToast("Stocks compared successfully!");
           } else {
               displayError('Failed to fetch stock data. Please check the symbols and date, and try again.', 'errorSearchBox1');
-              showToast("Error message goes here");
           }
       });
   });
@@ -292,11 +137,12 @@ function displayComparison(stockSymbol1, stockData1, stockImageUrl1, stockSymbol
 }
 
 function removeStock(symbol) {
-  const stockElement = document.getElementById(`comparisonResults${symbol}`);
-  if (stockElement) {
-      stockElement.innerHTML = ""; // Clear inner HTML
+    const stockElement = document.getElementById(`comparisonResults${symbol}`);
+    if (stockElement) {
+        stockElement.remove(); // Remove the entire element from the DOM tree
+    }
   }
-}
+  
 
 function handleKeyPress(event) {
   if (event.key === "Enter") {
@@ -325,3 +171,12 @@ function clearErrorMessages() {
       element.textContent = "";
   });
 }
+const picker = document.getElementById('datePicker','additionalDate');
+picker.addEventListener('input', function(e){
+  const day = new Date(this.value).getUTCDay();
+  if([6,0].includes(day)){
+    e.preventDefault();
+    this.value = '';
+    alert('Weekends not allowed');
+  }
+});
